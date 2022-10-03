@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="RecruitTasks" />
+        <module name="RecruitTasksLSEG-master" />
+        <module name="RecruitTasks-master" />
+        <module name="Task1DataFromTable" />
+        <module name="RecruitTasksLSEG" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

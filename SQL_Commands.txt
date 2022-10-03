@@ -1,0 +1,12 @@
+SELECT * 
+FROM Customers C
+LEFT JOIN Orders O
+ON C.ID = O.CustomerID;
+
+UPDATE Customers C
+SET Type = "corn"
+WHERE C.ID = 2;
+    
+SELECT SUM(CountryAmount) AS total_Amount_for_UK
+FROM Customers
+WHERE Country ="UK";
