@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 import java.util.Iterator;
 
 public class XlsReader {
-    private static final String NAME =  "C:\\spryng\\RecruitTasksLSEG-master\\src\\main\\java\\Excel file.xls";
+    private static final String NAME =  "src\\main\\java\\Excel file.xls";
 
 
     public void Reader (){

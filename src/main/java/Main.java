@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args) throws IOException {
         final String LINK_FOR_FIRST_EXERCISE = "https://www.ote-cr.cz/en/statistics/electricity-imbalances?version=0&date=2022-09-26";
-        FileWriter htmlOut = new FileWriter("C:\\spryng\\RecruitTasksLSEG-master\\src\\main\\java\\output.html");
+        FileWriter htmlOut = new FileWriter("src\\main\\java\\output.html");
 
         final String LINK_FOR_SECOND_EXERCISE = "https://www.ote-cr.cz/pubweb/attachments/05_09_12/2022/month09/day28/Imbalances_28_09_2022_V0_EN.xls";
 
@@ -26,7 +26,7 @@ public class Main {
 
         final String LINK_FOR_FOURTH_EXERCISE ="https://www.nhc.noaa.gov/data/hurdat/hurdat2-nepac-1949-2016-041317.txt";
 
-        File out = new File("C:\\spryng\\RecruitTasksLSEG-master\\src\\main\\java\\Excel file.xls");
+        File out = new File("src\\main\\java\\Excel file.xls");
 
         //task1
         task1(LINK_FOR_FIRST_EXERCISE,htmlOut);
@@ -66,7 +66,7 @@ public class Main {
     private static void task3(String url){
 
         WebDriver driver;
-        System.setProperty("webdriver.chrome.driver","C:\\spryng\\RecruitTasksLSEG-master\\src\\main\\java\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","src\\main\\java\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get(url);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
