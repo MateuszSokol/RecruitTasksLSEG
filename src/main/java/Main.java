@@ -29,15 +29,15 @@ public class Main {
         File out = new File("src\\main\\java\\Excel file.xls");
 
         //task1
-        task1(LINK_FOR_FIRST_EXERCISE,htmlOut);
+       // task1(LINK_FOR_FIRST_EXERCISE,htmlOut);
 
         //task2
-        new Thread(new Download(LINK_FOR_SECOND_EXERCISE,out)).start();
+       // new Thread(new Download(LINK_FOR_SECOND_EXERCISE,out)).start();
         //task2
-        XlsReader xlsReader = new XlsReader();
-        xlsReader.Reader();
+     //   XlsReader xlsReader = new XlsReader();
+      //  xlsReader.Reader();
         //task3
-        task3(LINK_FOR_THIRD_EXERCISE);
+      //  task3(LINK_FOR_THIRD_EXERCISE);
         //task4
         task4(LINK_FOR_FOURTH_EXERCISE);
     }
@@ -86,12 +86,16 @@ public class Main {
 
     private static void task4(String link){
 
-        String [] stormNames = new String[4];
+     //   String [] stormNames = new String[4];
         int [] maxWindValueArr = new int[4];
-        int stormNamesIterator =0;
+        int hurricaneNamesIterator =0;
         int maxWindSpeedIterator= 0;
         String substringPiece = null;
         List<Integer> maxWindValueList = new LinkedList<>();
+        List<String> hurricaneNamesList = new ArrayList<>();
+        List<Integer> maxHurricaneSpeedKnotValueList = new LinkedList<>();
+        List<Integer> hurricaneSpdResultAList = new LinkedList<>();
+
         try {
 
             URL url = new URL(link);
@@ -116,14 +120,17 @@ public class Main {
                         int lastLetterStormNameIndex = substringPiece.indexOf(',');
                         substringPiece = substringPiece.substring(0, lastLetterStormNameIndex);
                         if (substringPiece.charAt(substringPiece.length() - 1) == 'A') {
-                            stormNames[stormNamesIterator] = substringPiece;
-                            stormNamesIterator++;
+                         //   stormNames[hurricaneNamesIterator] = substringPiece;
+                            hurricaneNamesList.add(substringPiece);
+
                         }
                     }
                 }
 
-                if(cnt<stormNames.length && stormNames[cnt] !=null ){
-                    Pattern pattern1 = Pattern.compile(stormNames[cnt]);
+                if(cnt<hurricaneNamesList.size() && hurricaneNamesList.get(cnt) !=null ){
+                    int index = hurricaneNamesList.size()-cnt;
+                    Pattern pattern1 = Pattern.compile(hurricaneNamesList.get(cnt));
+
                     Matcher matcher1 = pattern1.matcher(sc);
                     boolean match = matcher1.find();
 
@@ -132,45 +139,50 @@ public class Main {
                         while (s.hasNextLine()) {
 
 
-                            String keep = s.nextLine();
+                            String keepValueFromTextNextLine = s.nextLine();
 
-                            if (keep.contains("E")) {
+                            if (keepValueFromTextNextLine.contains("E")) {
                                 break;
                             } else {
-                                keep = keep.replaceAll("\\s", "");
-                                int firstIndexOfW = keep.indexOf("W") + 2;
-                                String sPiece = keep.substring(firstIndexOfW);
+                                keepValueFromTextNextLine = keepValueFromTextNextLine.replaceAll("\\s", "");
+                                int firstIndexOfW = keepValueFromTextNextLine.indexOf("W") + 2;
+                                String sPiece = keepValueFromTextNextLine.substring(firstIndexOfW);
                                 int lastIndexComma = sPiece.indexOf(",");
                                 String resultStr = sPiece.substring(0, lastIndexComma);
                                 if (!resultStr.equalsIgnoreCase("")) {
                                     int resultInt = Integer.parseInt(resultStr);
-                                    maxWindValueList.add(resultInt);
+                                    maxHurricaneSpeedKnotValueList.add(resultInt);
 
                                 }
                             }
 
                         }
-                        Collections.sort(maxWindValueList);
-                        for (int i = maxWindValueList.size()-1;  ; i--) {
-                            if(maxWindValueList.get(i) !=null){
-                                maxWindValueArr[maxWindSpeedIterator] = maxWindValueList.get(i);
+                        Collections.sort(maxHurricaneSpeedKnotValueList);
+                        for (int i = maxHurricaneSpeedKnotValueList.size()-1;  ; i--) {
+                            if(maxHurricaneSpeedKnotValueList.get(i) !=null){
+                                hurricaneSpdResultAList.add(maxWindSpeedIterator,maxHurricaneSpeedKnotValueList.get(i));
                                 maxWindSpeedIterator++;
-                                maxWindValueList.clear();
+                                maxHurricaneSpeedKnotValueList.clear();
                                 break;
                             }
                         }
+
+
                     }
 
                     cnt++;
+
                 }
+
             }
-            for (int i = 0; i <stormNames.length; i++) {
-                System.out.println("Storm name: "+ stormNames[i] + " Max wind speed: "+ maxWindValueArr[i]);
+            for (int i = 0; i <hurricaneNamesList.size(); i++) {
+                System.out.println("Hurricane name: "+ hurricaneNamesList.get(i) + " Max wind speed(in knots): "+ hurricaneSpdResultAList.get(i));
             }
 
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 }
 
